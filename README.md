@@ -44,7 +44,7 @@ To run this project locally, follow these steps:
    ```
 
 5. Open your web browser and go to `http://localhost:3000` to view the application.
-
+![Alt text](<Screenshot 2023-09-09 at 3.05.07 PM.png>)
 ## Usage
 
 - Add new tasks to your to-do list by typing in the input field and pressing Enter.
