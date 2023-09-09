@@ -14,6 +14,7 @@ This is a simple web application that allows users to manage their to-do list an
 - Simple navigation between the to-do list and meal suggestions.
 - Responsive design for different screen sizes.
 - Error handling for API requests.
+
 ![Alt text](<Screenshot 2023-09-09 at 3.02.07 PM.png>)
 ## Getting Started
 
@@ -44,6 +45,7 @@ To run this project locally, follow these steps:
    ```
 
 5. Open your web browser and go to `http://localhost:3000` to view the application.
+
 ![Alt text](<Screenshot 2023-09-09 at 3.05.07 PM.png>)
 ## Usage
 
