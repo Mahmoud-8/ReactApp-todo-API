@@ -23,7 +23,7 @@ function App() {
                 </ul>
             </nav>
             <Routes>
-            <Route path="/" element= {<Home />}/>
+            <Route path="/ReactApp-todo-API" element= {<Home />}/>
             <Route path="/todos" element= {  <ToDoList />}/>
             <Route path="/meals" element= {  <Meal />}/>
             <Route  path="*" element={<NotFound />}/>
