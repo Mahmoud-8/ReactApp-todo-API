@@ -12,7 +12,7 @@ function App() {
             <nav className="navbar">
                 <ul className="nav-list">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link">Home</Link>
+                        <Link to="/ReactApp-todo-API" className="nav-link">Home</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/todos" className="nav-link">To-Do App</Link>
@@ -23,6 +23,9 @@ function App() {
                 </ul>
             </nav>
             <Routes>
+            <Route path="/" element= {<Home />}/>
+
+
             <Route path="/ReactApp-todo-API" element= {<Home />}/>
             <Route path="/todos" element= {  <ToDoList />}/>
             <Route path="/meals" element= {  <Meal />}/>
