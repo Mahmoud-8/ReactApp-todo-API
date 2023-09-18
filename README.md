@@ -15,7 +15,7 @@ This is a simple web application that allows users to manage their to-do list an
 - Responsive design for different screen sizes.
 - Error handling for API requests.
 
-![Alt text](<Screenshot 2023-09-09 at 3.02.07 PM.png>)
+![Alt text](<Screenshot 2023-09-18 at 3.51.43 PM.png>)
 ## Getting Started
 
 To run this project locally, follow these steps:
