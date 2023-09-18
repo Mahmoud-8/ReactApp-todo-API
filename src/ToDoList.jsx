@@ -3,28 +3,80 @@ import List from "./List";
 import AddItem from "./AddItem";
 
 function TodoApp() {
-
-  const [todos, setTodos] = useState(() => {
-    const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
-    return storedTodos;
-  });
+  const [todos, setTodos] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+    async function fetchData() {
+      try {
+        const response = await fetch('http://localhost:3000/todos');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data from the server');
+        }
+        const data = await response.json();
+        setTodos(data);
+        setError(null);
+      } catch (error) {
+        setError('Failed to fetch data from the server');
+      }
+    }
 
-  const removeFormTodos = (idToRemove) => {
-    const updatedTodos = todos.filter((todo) => todo.id !== idToRemove);
-    setTodos(updatedTodos);
+    // Call the fetchData function when the component mounts
+    fetchData();
+  }, []); // Empty dependency array to run only once when mounted
+
+  const removeFormTodos = async (idToRemove) => {
+    try {
+      const response = await fetch(`http://localhost:3000/todos/${idToRemove}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete data from the server');
+      }
+
+      // Remove the deleted todo from your component state
+      setTodos(todos.filter((todo) => todo.id !== idToRemove));
+      setError(null);
+
+      // Display a success message (e.g., using an alert)
+      alert('Todo deleted successfully');
+    } catch (error) {
+      setError('Failed to delete todo from the server');
+      console.error(error);
+    }
   };
 
   const removeAllItems = () => {
     setTodos([]);
   };
 
-  const addOneItem = (newTodo) => {
-    setTodos([...todos, newTodo]);
+  const addOneItem = async (newTodo) => {
+    try {
+      const response = await fetch('http://localhost:3000/todos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTodo),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save data to the server');
+      }
+
+      const createdTodo = await response.json();
+      setTodos([...todos, createdTodo]);
+      setError(null);
+
+      // Display a success message (e.g., using an alert)
+      alert('Todo saved successfully');
+    } catch (error) {
+      setError('Failed to save todo to the server');
+      console.error(error);
+    }
   };
+
   const toggleStatus = (id) => {
     const updatedTodos = todos.map((todo) =>
       todo.id === id
@@ -34,22 +86,52 @@ function TodoApp() {
     setTodos(updatedTodos);
   };
 
-  const editTask = (id, editedText) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, task: editedText } : todo);
+  const editTask = async (id, editedText) => {
+    try {
+      const response = await fetch(`http://localhost:3000/todos/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ task: editedText }),
+      });
 
-    setTodos(updatedTodos);
-  }
+      if (!response.ok) {
+        throw new Error('Failed to update data on the server');
+      }
+
+      // Update the todo in your component state
+      const updatedTodo = await response.json();
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) => (todo.id === id ? updatedTodo : todo))
+      );
+      setError(null);
+
+      // Display a success message (e.g., using an alert)
+      alert('Todo updated successfully');
+    } catch (error) {
+      setError('Failed to update todo on the server');
+      console.error(error);
+    }
+  };
+
   return (
     <div className="container">
       <AddItem addOneItem={addOneItem} />
-      <button onClick={removeAllItems} className="delete-all">Delete
-        All</button>
+      <button onClick={removeAllItems} className="delete-all">
+        Delete All
+      </button>
 
-      <List tasks={todos}
-        removeFromTodos={removeFormTodos}
-        toggleStatus={toggleStatus}
-        editTask={editTask} />
+      {error ? (
+        <div className="error">{error}</div>
+      ) : (
+        <List
+          tasks={todos}
+          removeFromTodos={removeFormTodos}
+          toggleStatus={toggleStatus}
+          editTask={editTask}
+        />
+      )}
     </div>
   );
 }
