@@ -51,7 +51,12 @@ function TodoApp() {
     setTodos([]);
   };
 
+
+
+
+
   const addOneItem = async (newTodo) => {
+    console.log(newTodo);
     try {
       const response = await fetch('http://localhost:3000/todos', {
         method: 'POST',
@@ -65,10 +70,11 @@ function TodoApp() {
         throw new Error('Failed to save data to the server');
       }
 
-      const createdTodo = await response.json();
-      setTodos([...todos, createdTodo]);
+      setTodos([...todos, newTodo]);
       setError(null);
 
+
+      
       // Display a success message (e.g., using an alert)
       alert('Todo saved successfully');
     } catch (error) {
@@ -86,14 +92,15 @@ function TodoApp() {
     setTodos(updatedTodos);
   };
 
-  const editTask = async (id, editedText) => {
+  const editTask = async (id ,updateditems) => {
+    console.log(updateditems);
     try {
       const response = await fetch(`http://localhost:3000/todos/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ task: editedText }),
+        body: JSON.stringify(updateditems),
       });
 
       if (!response.ok) {
@@ -101,14 +108,12 @@ function TodoApp() {
       }
 
       // Update the todo in your component state
-      const updatedTodo = await response.json();
       setTodos((prevTodos) =>
-        prevTodos.map((todo) => (todo.id === id ? updatedTodo : todo))
+        prevTodos.map((todo) => (todo.id === id ? updateditems : todo))
       );
       setError(null);
 
-      // Display a success message (e.g., using an alert)
-      alert('Todo updated successfully');
+ 
     } catch (error) {
       setError('Failed to update todo on the server');
       console.error(error);
@@ -117,7 +122,7 @@ function TodoApp() {
 
   return (
     <div className="container">
-      <AddItem addOneItem={addOneItem} />
+      <AddItem addOneItem={addOneItem}  />
       <button onClick={removeAllItems} className="delete-all">
         Delete All
       </button>

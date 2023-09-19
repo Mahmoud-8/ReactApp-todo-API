@@ -9,7 +9,11 @@ function EditItem({ todo, onSave,onCancel }) {
   };
 
   const handleSave = () => {
-    onSave(editedText);
+
+    const updateditems = {...todo,task:editedText 
+
+    }
+    onSave(updateditems);
 
   };
   return (

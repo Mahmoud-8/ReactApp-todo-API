@@ -12,7 +12,8 @@ function AddItem({ addOneItem }) {
   const handleSubmit = (values, { resetForm }) => {
     const newTodo = {
       task: values.newTask,
-      status: "",
+      
+      status: "open",
       id: crypto.randomUUID(),
     };
     addOneItem(newTodo);

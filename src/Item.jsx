@@ -12,8 +12,8 @@ const [edit, setEdit] = useState(false);
   const handleCheckboxChange = () => {
     toggleStatus(todo.id);
   };
-  const handleSave = (editedText) => {
-    editTask(todo.id, editedText);
+  const handleSave = (editedItem) => {
+    editTask(todo.id, editedItem);
     setEdit(false);
  
   };
