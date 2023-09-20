@@ -39,6 +39,8 @@ function TodoApp() {
       setTodos(todos.filter((todo) => todo.id !== idToRemove));
       setError(null);
 
+      // Display a success message (e.g., using an alert)
+      alert('Todo deleted successfully');
     } catch (error) {
       setError('Failed to delete todo from the server');
       console.error(error);
@@ -71,50 +73,72 @@ function TodoApp() {
       setTodos([...todos, newTodo]);
       setError(null);
 
-
     } catch (error) {
       setError('Failed to save todo to the server');
       console.error(error);
     }
   };
 
-  const toggleStatus = (id) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id
-        ? { ...todo, status: todo.status === "completed" ? "open" : "completed" }
-        : todo
-    );
-    setTodos(updatedTodos);
-  };
 
-  const editTask = async (id ,updateditems) => {
-    console.log(updateditems);
-    try {
-      const response = await fetch(`http://localhost:3000/todos/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updateditems),
-      });
 
-      if (!response.ok) {
-        throw new Error('Failed to update data on the server');
-      }
+  
+// Toggle status function
+const toggleStatus = async (id) => {
+  const updatedTodos = todos.map((todo) =>
+    todo.id === id
+      ? { ...todo, status: todo.status === "completed" ? "open" : "completed" }
+      : todo
+  );
+  setTodos(updatedTodos);
 
-      // Update the todo
-      setTodos((prevTodos) =>
-        prevTodos.map((todo) => (todo.id === id ? updateditems : todo))
-      );
-      setError(null);
+  // Send request to update status on the server
+  try {
+    const response = await fetch(`http://localhost:3000/todos/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ status: updatedTodos.find(todo => todo.id === id).status }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to update data on the server');
+    }
+  } catch (error) {
+    setError('Failed to update todo on the server');
+    console.error(error);
+  }
+};
 
  
-    } catch (error) {
-      setError('Failed to update todo on the server');
-      console.error(error);
-    }
-  };
+// Edit task function
+const editTask = async (id, updateditems) => {
+  try {
+    const response = await fetch(`http://localhost:3000/todos/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateditems),
+    });
 
+    if (!response.ok) {
+      throw new Error('Failed to update data on the server');
+    }
+
+    // Update the todo
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, ...updateditems } : todo
+    );
+
+    setTodos(updatedTodos);
+    setError(null);
+  } catch (error) {
+    setError('Failed to update todo on the server');
+    console.error(error);
+  }
+};
+  
   return (
     <div className="container">
       <AddItem addOneItem={addOneItem}  />

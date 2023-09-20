@@ -25,12 +25,10 @@ const [edit, setEdit] = useState(false);
     setEdit(false);
   }
 
-
   if (edit) {
     return <EditItem todo={todo} onSave={handleSave} onCancel={handleCancel} />;
   }
-
-
+  
   return (
     <li
       key={todo.id}
