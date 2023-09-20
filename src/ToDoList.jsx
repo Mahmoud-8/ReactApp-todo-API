@@ -39,8 +39,6 @@ function TodoApp() {
       setTodos(todos.filter((todo) => todo.id !== idToRemove));
       setError(null);
 
-      // Display a success message (e.g., using an alert)
-      alert('Todo deleted successfully');
     } catch (error) {
       setError('Failed to delete todo from the server');
       console.error(error);
@@ -74,9 +72,6 @@ function TodoApp() {
       setError(null);
 
 
-      
-      // Display a success message (e.g., using an alert)
-      alert('Todo saved successfully');
     } catch (error) {
       setError('Failed to save todo to the server');
       console.error(error);
@@ -107,7 +102,7 @@ function TodoApp() {
         throw new Error('Failed to update data on the server');
       }
 
-      // Update the todo in your component state
+      // Update the todo
       setTodos((prevTodos) =>
         prevTodos.map((todo) => (todo.id === id ? updateditems : todo))
       );

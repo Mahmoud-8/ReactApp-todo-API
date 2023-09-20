@@ -10,7 +10,7 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
-  background: url("https://images.unsplash.com/photo-1688510760047-a78e0a375950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80") 
+  background: url("https://img.freepik.com/premium-photo/blank-note-paper_87394-1341.jpg?w=360") 
   center/cover no-repeat;
 }
 .container {
