@@ -1,9 +1,9 @@
 # Todo App with Meals - README
+This is a simple web application that allows users to manage their to-do list and get a random meal suggestion for the day.
 
 ![!\[Alt text\](<dist/Screenshot 2023-09-09 at 3.01.38 PM.png>)
 ](<Screenshot 2023-09-09 at 3.01.38 PM.png>)
 
-This is a simple web application that allows users to manage their to-do list and get a random meal suggestion for the day.
 
 ![Alt text](<Screenshot 2023-09-20 at 3.38.31 PM.png>)
 
