@@ -1,4 +1,3 @@
-
 # Todo App with Meals - README
 
 ![!\[Alt text\](<dist/Screenshot 2023-09-09 at 3.01.38 PM.png>)
@@ -17,8 +16,17 @@ This is a simple web application that allows users to manage their to-do list an
 - Responsive design for different screen sizes.
 - Error handling for API requests.
 
-![Alt text](<Screenshot 2023-09-18 at 3.51.43 PM.png>)
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Backend](#backend)
+- [Contributing](#contributing)
+
 ## Getting Started
+
+![Alt text](<Screenshot 2023-09-18 at 3.51.43 PM.png>)
 
 To run this project locally, follow these steps:
 
@@ -49,6 +57,8 @@ To run this project locally, follow these steps:
 5. Open your web browser and go to `http://localhost:3000` to view the application.
 
 ![Alt text](<Screenshot 2023-09-09 at 3.05.07 PM.png>)
+
+
 ## Usage
 
 - Add new tasks to your to-do list by typing in the input field and pressing Enter.
@@ -69,6 +79,37 @@ This project relies on the following dependencies:
 - Axios: A promise-based HTTP client for making API requests.
 
 You can find the full list of dependencies in the `package.json` file.
+
+## Backend
+
+This project uses a backend server to store and manage to-do tasks. The backend is implemented using Node.js and MongoDB.
+
+### Backend Setup
+
+1. Ensure you have Node.js and MongoDB installed on your system.
+
+2. Set up a MongoDB database and obtain the connection URL.
+
+3. Create a `.env` file in the root directory of the backend code with the following content:
+
+   ```env
+   DATABASE_CONNECTION=YOUR_MONGODB_CONNECTION_URL
+   ```
+
+4. Install the backend dependencies:
+
+   ```bash
+   cd backend
+   npm install
+   ```
+
+5. Start the backend server:
+
+   ```bash
+   npm start
+   ```
+
+The backend server should now be running and accessible at `http://localhost:3000`. The frontend is configured to communicate with this server.
 
 ## Contributing
 
