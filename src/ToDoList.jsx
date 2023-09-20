@@ -39,8 +39,6 @@ function TodoApp() {
       setTodos(todos.filter((todo) => todo.id !== idToRemove));
       setError(null);
 
-      // Display a success message (e.g., using an alert)
-      alert('Todo deleted successfully');
     } catch (error) {
       setError('Failed to delete todo from the server');
       console.error(error);
@@ -81,7 +79,7 @@ function TodoApp() {
 
 
 
-  
+
 // Toggle status function
 const toggleStatus = async (id) => {
   const updatedTodos = todos.map((todo) =>

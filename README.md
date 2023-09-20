@@ -6,6 +6,8 @@
 
 This is a simple web application that allows users to manage their to-do list and get a random meal suggestion for the day.
 
+![Alt text](<Screenshot 2023-09-20 at 3.38.31 PM.png>)
+
 ## Features
 
 - Create, edit, and delete tasks on your to-do list.
