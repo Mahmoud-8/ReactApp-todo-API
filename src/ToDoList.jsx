@@ -22,32 +22,7 @@ function TodoApp() {
     }
 
     // Call the fetchData function when the component mounts
-    fetchData();
-  }, []); // Empty dependency array to run only once when mounted
 
-  const removeFormTodos = async (idToRemove) => {
-    try {
-      const response = await fetch(`http://localhost:3000/todos/${idToRemove}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to delete data from the server');
-      }
-
-      // Remove the deleted todo from your component state
-      setTodos(todos.filter((todo) => todo.id !== idToRemove));
-      setError(null);
-
-    } catch (error) {
-      setError('Failed to delete todo from the server');
-      console.error(error);
-    }
-  };
-
-  const removeAllItems = () => {
-    setTodos([]);
-  };
 
 
 
