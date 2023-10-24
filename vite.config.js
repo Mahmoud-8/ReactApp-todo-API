@@ -6,4 +6,10 @@ export default defineConfig({
   base: "/ReactApp-todo-API",
 
   plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './unit-tests/setup.js',
+    include: ['**.test.jsx'],
+  }
 })
