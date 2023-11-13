@@ -22,10 +22,10 @@ function Meal() {
                 setError('Error', error)
             }
         };
+
         getMealData();
 
     }, [])
-
 
     return (
 
