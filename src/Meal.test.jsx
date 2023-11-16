@@ -10,6 +10,7 @@ const handlers = [
       meals: [
         {
           strMeal: 'Mocked Meal',
+          strMealThumb: '',
         },
       ],
     }));

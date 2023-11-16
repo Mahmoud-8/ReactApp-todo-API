@@ -5,7 +5,6 @@ function Meal() {
     const [mealData, setMealData] = useState();
     const [error, setError] = useState();
 
-
     useEffect(() => {
         const getMealData = async () => {
 
@@ -20,6 +19,8 @@ function Meal() {
                 }
             } catch (error) {
                 setError('Error', error)
+                console.error('Error fetching meal data:', error);
+
             }
         };
 
@@ -28,7 +29,6 @@ function Meal() {
     }, [])
 
     return (
-
         <div>
       <h2 className="green-text">Bon Appétit</h2>
 
